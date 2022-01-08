@@ -34,13 +34,13 @@ var printedCost;
 //Hides the other jobe role field on load.
 otherJobRole.style.display = 'none';
 
-//Focus on the name input text field upon loading.
+//Focuses on the name input text field upon loading.
 nameInput.focus();
 
 //Disables the color option.
 color.disabled = true;
 
-//Sets default payment method to credit card and hides other payment fields
+//Sets default payment method to credit card and hides other payment fields.
 creditCard.selected = true;
 document.getElementById('paypal').style.display = 'none';
 document.getElementById('bitcoin').style.display = 'none';
@@ -48,17 +48,19 @@ document.getElementById('bitcoin').style.display = 'none';
 /*****************************
  * `createOtherField` function
  ****************************/
-//Displays the other field when other job is chosen
+//Displays the other field when other job is chosen.
 function createOtherField () {
     if (jobTitleOption.value === 'other') {
         otherJobRole.style.display = 'block';
+    } else {
+        otherJobRole.style.display = 'none';
     }
 }
 
 /*****************************
  * `checkboxFocus` function
  ****************************/
-//Adds focus class to checkbox labels
+//Adds focus class to checkbox labels.
 function checkboxFocus (e) {
     let checkbox = e.target
     let label = checkbox.parentNode;
@@ -68,7 +70,7 @@ function checkboxFocus (e) {
 /*****************************
  * `checkboxBlur` function
  ****************************/
-//Removes focus on blur
+//Removes focus on blur.
  function checkboxBlur (e) {
     let checkbox = e.target
     let label = checkbox.parentNode;
@@ -82,7 +84,7 @@ function checkboxFocus (e) {
 //Job title event listener to appropriately display the "other job role" field.
 jobTitleOption.addEventListener('change', createOtherField);
 
-//T-shirt design event listener to enable appropriate color options
+//T-shirt design event listener to enable appropriate color options.
 design.addEventListener('change', enableColors);
 
 //Activities event listener to detect a change in selected activities and display an correct total.
@@ -90,23 +92,23 @@ for (let e = 0; e < activities.length; e++) {
     activities[e].addEventListener('change', totalCost);
 }
 
-//Payment method event listener to change displayed sub-fields
+//Payment method event listener to change displayed sub-fields.
 paymentMethod.addEventListener('change', displayPaymentFields);
 
-//Form submit listener that validates before submission
+//Form submit listener that validates before submission.
 form.addEventListener('submit', validateForm);
 
-//Focus is on a checkbox
+//Focus is on a checkbox.
 for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('focus', checkboxFocus);
 }
 
-//Blur checkbox
+//Blur checkbox.
 for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('blur', checkboxBlur);
 }
 
-//Checkbox listener for activity scheduling conflicts
+//Checkbox listener for activity scheduling conflicts.
 for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('click', activityConflict);
 }
@@ -143,9 +145,9 @@ function enableColors() {
     changeColorCaption();
 }
 
- /*************************
+ /******************************
  * `changeColorCaption` function
- *************************/
+ *******************************/
 //Removes `Select a Design` option when a t-shirt design is chosen.
 function changeColorCaption () {
     if (document.getElementById('design').value !== 'Select theme') {
@@ -160,9 +162,9 @@ function changeColorCaption () {
     }
 }
 
-/*************************
+/**********************
  * `totalCost` function
-*************************/
+***********************/
  //Adds the fees for the selected activities and prints them to the display.
  function totalCost () {
      //Sets `finalCost` equal to zero so that every call of the function re-calculates from scratch
@@ -236,15 +238,6 @@ function resetForm () {
            return  document.getElementById('activities').classList.remove('not-valid');
         }
     }
-            
-    
-//     var errors = document.getElementsByClassName('not-valid');
-//     var valid = document.getElementsByClassName('valid');
-//     var hints = document.getElementsByClassName('hint');
-//     //var requiredInfoInput = document.querySelectorAll('');
-//     var activities = document.getElementById('activities');
-//     var requiredCCInput = document.querySelectorAll('div#credit-card > label');
-// }
 
 function validateForm (event) {
     //Resets visual valid indicators from previous submissions.
@@ -282,7 +275,7 @@ function validateForm (event) {
     }
 
     //**************************Activity formatting*****************************
-    //Validates at least one activity selected to be true.
+    //Validates that at least one activity is selected.
     if (document.getElementById('activities-cost').textContent === 'Total: $0') {
         document.getElementById('activities-hint').style.display = 'inline-block';
         document.getElementById('activities').classList.add('not-valid');
